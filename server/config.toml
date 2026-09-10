@@ -1,0 +1,7 @@
+device_ip = "192.168.1.43"
+port = 15555
+ping_interval = 5
+timeout = 10
+reconnect = 1
+bind_addr = "0.0.0.0:3000"
+static_dir = "../frontend/dist"
