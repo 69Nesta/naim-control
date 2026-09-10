@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { ClientState, ClientEvent } from "@/types";
+import type { AppConfig, ClientState, ClientEvent } from "@/types";
 
 
 function applyEvent(state: ClientState, e: ClientEvent): ClientState {
@@ -10,6 +10,7 @@ function applyEvent(state: ClientState, e: ClientEvent): ClientState {
 }
 
 export function useClient() {
+  const [config, setConfig] = useState<AppConfig>({ device_ip: '', port: 0, timeout: 0, ping_interval: 0, reconnect: 0 });
   const [prevState, setPrevState] = useState<ClientState>({ connected: false, volume: null, input: null });
   const [state, setState] = useState<ClientState>({ connected: false, volume: null, input: null });
   const wsRef = useRef<WebSocket | null>(null);
@@ -26,7 +27,10 @@ export function useClient() {
       };
 
       ws.onmessage = (e) => {
-        const msg = JSON.parse(e.data);
+        const msg = JSON.parse(e.data) as ClientEvent;
+        if (msg.type === "ConfigUpdate") {
+          setConfig(msg.payload);
+        }
         setState((prev) => applyEvent(prev, msg));
       };
 
@@ -60,5 +64,5 @@ export function useClient() {
     sendCommand(`NVM GETPREAMP`);
   };
 
-  return { state, setState, prevState, setPrevState, sendCommand, setVolume, setInput, getPreAmp };
+  return { config, state, setState, prevState, setPrevState, sendCommand, setVolume, setInput, getPreAmp };
 }

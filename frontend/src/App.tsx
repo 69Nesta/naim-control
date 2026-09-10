@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import type { AppConfig } from "@/types";
 import Header from "@/components/Header";
 import Controls from "@/components/Controls";
 import { Toaster, toast } from "@/components/ui/toast";
@@ -7,11 +6,8 @@ import { useClient } from "@/hooks/useClient";
 
 
 function App() {
-  const [config] = useState<AppConfig>({
-    device_ip: "", port: 15555, timeout: 10, ping_interval: 1000, reconnect: 10
-  });
-
   const {
+    config,
     state,
     prevState,
     setPrevState,

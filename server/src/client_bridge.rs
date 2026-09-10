@@ -6,6 +6,13 @@ use tokio::sync::broadcast;
 #[derive(Serialize, Clone, Debug)]
 #[serde(tag = "type", content = "payload")]
 pub enum ClientEvent {
+    ConfigUpdate {
+        device_ip: String,
+        port: u16,
+        timeout: u64,
+        ping_interval: u64,
+        reconnect: u64,
+    },
     StatusUpdate {
         volume: Option<u8>,
         input: Option<String>,

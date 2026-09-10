@@ -11,6 +11,7 @@ use tower_http::services::ServeDir;
 
 #[derive(Clone)]
 pub struct AppState {
+    pub config: Arc<AppConfig>,
     pub shared: Arc<SharedConn>,
     pub event_tx: broadcast::Sender<client_bridge::ClientEvent>,
 }
@@ -27,7 +28,11 @@ async fn main() -> anyhow::Result<()> {
         cfg.ping_interval,
     );
 
-    let state = AppState { shared, event_tx };
+    let state = AppState {
+        config: Arc::new(cfg.clone()),
+        shared,
+        event_tx,
+    };
 
     let app = Router::new()
         .route("/ws", get(ws::ws_handler))
