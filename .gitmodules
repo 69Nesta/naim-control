@@ -1,0 +1,3 @@
+[submodule "naim-client"]
+	path = naim-client
+	url = git@github.com:69Nesta/naim-client.git
