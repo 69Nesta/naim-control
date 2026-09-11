@@ -15,3 +15,11 @@ test:
 dev:
 	docker compose -f docker-compose.dev.yml up --build
 
+down:
+	docker compose down
+
+down-dev:
+	docker compose -f docker-compose.dev.yml down
+
+
+.PHONY: build clean run test dev down down-dev
