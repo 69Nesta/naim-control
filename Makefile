@@ -1,14 +1,17 @@
 build:
-	cargo build --workspace --bin naim-web
-	cp target/debug/naim-web .
-	./naim-web
+	docker build -t naim-web:local .
 
 clean:
-	rm -f naim-web
+	rm -rf target
+	rm -rf frontend/dist
+	rm -rf frontend/node_modules
 
 run:
-	./naim-web
+	docker compose up --build
 
 test:
 	cargo test --workspace
+
+dev:
+	docker compose -f docker-compose.dev.yml up --build
 

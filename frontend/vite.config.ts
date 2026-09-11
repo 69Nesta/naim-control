@@ -7,9 +7,10 @@ import path from 'path'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
+    host: '0.0.0.0',
     proxy: {
-      "/ws": { target: "ws://localhost:3000", ws: true },
-      "/api": "http://localhost:3000",
+      '/ws': { target: `${process.env.VITE_BACKEND_WS || 'ws://localhost:3000'}`, ws: true },
+      '/api': process.env.VITE_BACKEND_URL || 'http://localhost:3000',
     },
   },
   resolve: {

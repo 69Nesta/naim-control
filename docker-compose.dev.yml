@@ -1,0 +1,36 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      target: backend-dev
+    working_dir: /app/server
+    command: cargo watch -w src -w ../naim-client/src -x run
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - cargo-cache:/usr/local/cargo/registry
+      - target-cache:/app/target
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      target: frontend-dev
+    working_dir: /app/frontend
+    environment:
+      VITE_BACKEND_URL: http://backend:3000
+      VITE_BACKEND_WS: ws://backend:3000
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app/frontend
+      - frontend-node-modules:/app/frontend/node_modules
+    depends_on:
+      - backend
+
+volumes:
+  cargo-cache:
+  target-cache:
+  frontend-node-modules:
