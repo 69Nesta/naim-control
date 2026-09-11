@@ -1,5 +1,22 @@
 # Naim Control Web Interface
 
+Naim Control is a web application for controlling the Naim Qute-01CC amplifier
+from a phone, iPad, or desktop. It displays the amplifier connection status and
+provides controls for volume and audio input selection.
+
+## How it works
+
+The frontend runs in the browser and provides the responsive control interface.
+It connects to the Rust backend over WebSocket for real-time updates and user
+actions. The backend maintains the connection to the Naim Qute-01CC over TCP,
+using the [`naim-client`](https://github.com/69Nesta/naim-client) Rust library.
+It translates browser commands into amplifier commands and broadcasts the
+latest device state back to connected clients.
+
+The amplifier address and connection settings are loaded from
+`server/config.toml`. They can be overridden with `APP__` environment variables
+when running the Docker setup.
+
 ## Responsive design
 
 The app is responsive across phones, iPads, and desktop screens.
