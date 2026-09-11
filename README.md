@@ -1,6 +1,16 @@
-# naim-control
+# Naim Control Web Interface
 
-## Docker
+## Responsive design
+
+The app is responsive across phones, iPads, and desktop screens.
+
+| iPhone | iPad |
+| --- | --- |
+| ![iPhone preview](./assets/preview_iphone.png) | ![iPad preview](./assets/preview_ipad.png) |
+
+## Installation
+
+### Docker
 
 Build and run the app with:
 
@@ -31,7 +41,7 @@ docker compose up --build --force-recreate
 
 The development Compose setup also reads `.env` for the backend.
 
-## Docker development
+### Docker development
 
 Run the frontend and backend with hot refresh:
 
