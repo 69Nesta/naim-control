@@ -851,6 +851,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "axum",
+ "config",
  "naim_client",
  "serde",
  "serde_json",

@@ -12,6 +12,11 @@ services:
       - .:/app
       - cargo-cache:/usr/local/cargo/registry
       - target-cache:/app/target
+    env_file:
+    - path: ./.env
+      required: true
+    - path: ./dev.env
+      required: false
 
   frontend:
     build:
@@ -29,6 +34,11 @@ services:
       - frontend-node-modules:/app/frontend/node_modules
     depends_on:
       - backend
+    env_file:
+    - path: ./.env
+      required: true
+    - path: ./dev.env
+      required: false
 
 volumes:
   cargo-cache:

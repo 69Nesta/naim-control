@@ -1,4 +1,5 @@
 // server/src/config.rs
+use config::{Config as ConfigLoader, Environment, File};
 use serde::Deserialize;
 
 #[derive(Deserialize, Clone)]
@@ -14,7 +15,11 @@ pub struct AppConfig {
 
 impl AppConfig {
     pub fn load() -> anyhow::Result<Self> {
-        let raw = std::fs::read_to_string("config.toml")?;
-        Ok(toml::from_str(&raw)?)
+        let settings = ConfigLoader::builder()
+            .add_source(File::with_name("config.toml"))
+            .add_source(Environment::with_prefix("APP").separator("__"))
+            .build()?;
+
+        Ok(settings.try_deserialize()?)
     }
 }

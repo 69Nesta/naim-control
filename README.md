@@ -10,9 +10,26 @@ make run
 docker compose up --build
 ```
 
-The web interface is available at http://localhost:3000. The container uses
-`server/config.toml`, so update `device_ip` there before building if the Naim
-device is not at the configured address.
+The web interface is available at http://localhost:3000.
+
+To configure the container with environment variables, copy the example file
+and edit the values for your setup:
+
+```sh
+cp .env.example .env
+$EDITOR .env
+```
+
+`.env.example` contains all available `APP__` settings, including
+`APP__DEVICE_IP`, `APP__PORT`, `APP__BIND_ADDR`, and `APP__STATIC_DIR`. Values
+in `.env` override the matching settings in `server/config.toml`. Recreate the
+container after changing `.env`:
+
+```sh
+docker compose up --build --force-recreate
+```
+
+The development Compose setup also reads `.env` for the backend.
 
 ## Docker development
 

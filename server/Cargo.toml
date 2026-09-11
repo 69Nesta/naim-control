@@ -6,6 +6,7 @@ edition = "2024"
 [dependencies]
 anyhow = "1.0.104"
 axum = { version = "0.8.9", features = ["ws"] }
+config = "0.15.25"
 naim_client = { path = "../naim-client" }
 serde = { version = "1.0.229", features = ["derive"] }
 serde_json = "1.0.151"
