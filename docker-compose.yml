@@ -3,7 +3,7 @@ services:
     build:
       context: .
     ports:
-      - "${PORT:-3000}:${PORT:-3000}"
+      - "${PORT:-3000}:3000"
     restart: unless-stopped
     env_file:
       - ./.env
