@@ -4,6 +4,9 @@
 
 The app is responsive across phones, iPads, and desktop screens.
 
+It also supports PWA installation. On iPhone, open the app in Safari, tap the
+Share button, choose **Add to Home Screen**, and confirm.
+
 | iPhone | iPad |
 | --- | --- |
 | ![iPhone preview](./assets/preview_iphone.png) | ![iPad preview](./assets/preview_ipad.png) |
