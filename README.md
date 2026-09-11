@@ -13,6 +13,14 @@ Share button, choose **Add to Home Screen**, and confirm.
 
 ## Installation
 
+Clone the repository and build the frontend and backend:
+
+```sh
+git clone --recursive -j8 git@github.com:69Nesta/naim-control.git
+cd naim-control
+make build
+```
+
 ### Docker
 
 Build and run the app with:
@@ -56,3 +64,12 @@ docker compose -f docker-compose.dev.yml up --build
 
 Open http://localhost:5173. Vite reloads frontend changes, and `cargo-watch`
 rebuilds and restarts the backend when Rust sources change.
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contributing
+Contributions are welcome! Create a pull request or open an issue to discuss your ideas.
+
+## Author
+- [@69Nesta](https://github.com/69Nesta)
