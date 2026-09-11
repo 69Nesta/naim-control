@@ -7,7 +7,7 @@ services:
     working_dir: /app/server
     command: cargo watch -w src -w ../naim-client/src -x run
     ports:
-      - "3000:3000"
+      - "${PORT:-3000}:${PORT:-3000}"
     volumes:
       - .:/app
       - cargo-cache:/usr/local/cargo/registry
@@ -25,8 +25,8 @@ services:
       target: frontend-dev
     working_dir: /app/frontend
     environment:
-      VITE_BACKEND_URL: http://backend:3000
-      VITE_BACKEND_WS: ws://backend:3000
+      VITE_BACKEND_URL: http://backend:${PORT:-3000}
+      VITE_BACKEND_WS: ws://backend:${PORT:-3000}
     ports:
       - "5173:5173"
     volumes:
